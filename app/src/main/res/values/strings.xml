@@ -2,4 +2,8 @@
     <string name="app_name">Instagram</string>
     <string name="edit_profile_fragment">프로필 수정</string>
     <string name="sign_out_fragment">로그아웃</string>
+
+    <!-- Firebase messages -->
+    <string name="auth_failed">로그인 실패</string>
+    <string name="auth_success">로그인 성공</string>
 </resources>
