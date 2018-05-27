@@ -43,7 +43,6 @@ public class HomeActivity extends AppCompatActivity {
         setupBottomNavigationView();
         setupViewPager();
         setupFirebaseAuth();
-
     }
 
     private void initImageLoader(){

@@ -1,9 +1,43 @@
 <resources>
     <string name="app_name">Instagram</string>
+
+    <!-- fragment names -->
     <string name="edit_profile_fragment">프로필 수정</string>
     <string name="sign_out_fragment">로그아웃</string>
+    <string name="profile_fragment">프로필</string>
+
+    <!-- dialog names -->
+    <string name="confirm_password_dialog">ConfirmPasswordDialog</string>
 
     <!-- Firebase messages -->
     <string name="auth_failed">로그인 실패</string>
     <string name="auth_success">로그인 성공</string>
+
+    <!-- Firebase database fileds -->
+    <string name="dbname_users">users</string>
+    <string name="dbname_users_account_settings">users_account_settings</string>
+    <string name="field_username">username</string>
+    <string name="field_email">email</string>
+    <string name="field_display_name">display_name</string>
+    <string name="field_website">website</string>
+    <string name="field_description">description</string>
+    <string name="field_phone_number">phone_number</string>
+
+    <!-- Intent Extras -->
+    <string name="calling_activity">calling_activity</string>
+    <string name="select_image">select_image</string>
+
+    <!-- activity names -->
+    <string name="profile_activity">profile Activity</string>
+
+    <!-- strings -->
+    <string name="gallery">GALLERY</string>
+    <string name="photo">PHOTO</string>
+    <string name="string_open_camera">카메라 열기</string>
+    <string name="string_next">Next</string>
+    <string name="string_share">공유하기</string>
+
+
 </resources>
+
+

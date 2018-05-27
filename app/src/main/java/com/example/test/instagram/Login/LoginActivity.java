@@ -90,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                  @Override
                                  public void onComplete(@NonNull Task<AuthResult> task) {
                                      Log.d(TAG, "signInWithEmail:onComplete: " + task.isSuccessful());
+                                     FirebaseUser user = mAuth.getCurrentUser();
 
                                      if (!task.isSuccessful()){
                                          Log.w(TAG, "signInWithEmail:로그인 실패", task.getException() );
@@ -98,10 +99,20 @@ public class LoginActivity extends AppCompatActivity {
                                          mProgressBar.setVisibility(View.GONE);
                                          mPleaseWait.setVisibility(View.GONE);
                                      } else{
-                                         Log.d(TAG, "signInWithEmail: 로그인 성공");
-                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_success), Toast.LENGTH_SHORT).show();
-                                         mProgressBar.setVisibility(View.GONE);
-                                         mPleaseWait.setVisibility(View.GONE);
+                                         try{
+                                             if(user.isEmailVerified()){
+                                                 Log.d(TAG, "onComplete: success. email is verified.");
+                                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                 startActivity(intent);
+                                             } else{
+                                                 Toast.makeText(mContext, "이메일 인증이 되지 않았습니다. \n 이메일 확인 해주세요.", Toast.LENGTH_SHORT).show();
+                                                 mProgressBar.setVisibility(View.GONE);
+                                                 mPleaseWait.setVisibility(View.GONE);
+                                                 mAuth.signOut();
+                                             }
+                                         }catch (NullPointerException e){
+                                             Log.d(TAG, "onComplete: NullPorinterException:" + e.getMessage());
+                                         }
                                      }
                                  }
                              });
