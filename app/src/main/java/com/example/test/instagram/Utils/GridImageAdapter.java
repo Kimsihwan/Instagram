@@ -4,13 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.test.instagram.R;
@@ -39,7 +36,7 @@ public class GridImageAdapter extends ArrayAdapter<String>{
     }
 
     private static class ViewHolder{
-        SqaureImageView image;
+        SquareImageView image;
         ProgressBar mProgressBar;
 
     }
@@ -56,7 +53,7 @@ public class GridImageAdapter extends ArrayAdapter<String>{
             convertView = minflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
             holder.mProgressBar = (ProgressBar) convertView.findViewById(R.id.gridImageProgressbar);
-            holder.image = (SqaureImageView) convertView.findViewById(R.id.gridImageView);
+            holder.image = (SquareImageView) convertView.findViewById(R.id.gridImageView);
 
             convertView.setTag(holder);
         }

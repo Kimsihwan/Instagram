@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.test.instagram.Profile.AccountSettingsActivity;
 import com.example.test.instagram.R;
 import com.example.test.instagram.Utils.FilePaths;
 import com.example.test.instagram.Utils.FileSearch;
@@ -47,7 +48,7 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
         galleryImage = (ImageView) view.findViewById(R.id.galleryImageView);
         gridView = (GridView) view.findViewById(R.id.gridView);
@@ -72,9 +73,18 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: navigating to the final share screen");
 
-                Intent intent = new Intent(getActivity(), NextActivity.class);
-                intent.putExtra(getString(R.string.select_image), mSelectedImage);
-                startActivity(intent);
+                if(isRootTask()){
+                    Intent intent = new Intent(getActivity(), NextActivity.class);
+                    intent.putExtra(getString(R.string.select_image), mSelectedImage);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
+                    intent.putExtra(getString(R.string.select_image), mSelectedImage);
+                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile_fragment));
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+
 
             }
         });
@@ -82,6 +92,15 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
         init();
 
         return  view;
+    }
+
+    private boolean isRootTask(){
+        if(((ShareActivity)getActivity()).getTask() == 0){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     private void init(){
